@@ -28,6 +28,10 @@ public class SnapshotFragment extends Fragment {
 			
 			snapshot = BitmapFactory.decodeFile(file.getAbsolutePath());
 			
+			if (snapshot == null) {
+				snapshot = BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_launcher);
+			}
+			
 			ImageView imgSnapshot = (ImageView) rootView.findViewById(R.id.imgSnapshot);
 			imgSnapshot.setImageBitmap(snapshot);
 		} catch (Exception e) {
