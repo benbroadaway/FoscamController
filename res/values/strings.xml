@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Foscam Controller</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_PTZ_Points">PTZ Points</string>
+    <string name="title_Motion_Detection">Motion Detection</string>
+    <string name="title_Snapshot">Snapshot</string>
+	<string name="btn_PtzSubmit">Submit</string>
+	<string name="btn_Go">Go</string>
+	<string name="btn_Refresh">Refresh</string>
+	<string name="switch_MotionDetection">Enable motion detection</string>
+	<string name="hdr_Available_PTZ_Points">Available PTZ Points</string>
+	<string name="hdr_Motion_Detection">Enable/Disable</string>
+	<string name="imgDesc_Snapshot">cam snapshot</string>
+	<string name="camCGI">/cgi-bin/CGIProxy.fcgi</string>
+	<string name="ptz_prefs">PTZPreferences</string>
+	
+	
+	<!-- Preference Strings -->
+	<string name="pref_title">Settings</string>
+	<string name="pref_send_report">Send crash reports</string>
+    <string name="pref_send_report_summary">Helps to fix bugs</string>
+    <string name="pref_sync_frequency">Sync frequency</string>
+    <string name="pref_sync_frequency_summary">Set the sync frequency</string>
+    <string name="pref_credentials_profile">User Credentials</string>
+    <string name="pref_user_name">Set username</string>
+    <string name="pref_user_name_summary">Set your username</string>
+    <string name="pref_user_profile">User Profile</string>
+    <string name="pref_password">Set password</string>
+    <string name="pref_password_summary">Set your password</string>
+    <string name="pref_password_profile">Password Profile</string>
+    <string name="pref_cam_profile">Camera Info</string>
+    <string name="pref_cam_url">Set camera address</string>
+    <string name="pref_cam_url_summary">Set your camera\'s address</string>
+    <string name="pref_cam_https">Set HTTPS use</string>
+    <string name="pref_cam_https_summary">Set your camera\'s HTTPS use</string>
+    <string name="pref_update_setting">Update Settings</string>
+</resources>

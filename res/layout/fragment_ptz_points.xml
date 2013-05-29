@@ -1,0 +1,48 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:orientation="vertical" >
+
+		<TextView
+		    android:id="@+id/lblPtzPoints"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:text="@string/hdr_Available_PTZ_Points"
+		    style="?android:attr/listSeparatorTextViewStyle" />
+
+		<Button
+		    android:id="@+id/btnRefresh"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="right"
+		    android:onClick="RefreshPTZPoints"
+		    android:text="@string/btn_Refresh" />
+
+    	<RadioGroup
+    	    android:id="@+id/ptzGroup"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_weight="0.75"
+    	    android:orientation="vertical" >
+
+   		</RadioGroup>
+    	
+    	    <Button
+    	        android:id="@+id/btnPtzSubmit"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        android:layout_gravity="center_horizontal"
+    	        android:layout_weight="0.25"
+    	        android:onClick="goToPTZPoint"
+    	        android:text="@string/btn_PtzSubmit" />
+
+	</LinearLayout>
+
+</ScrollView>
