@@ -12,59 +12,60 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 public class BGGoToPTZPoint extends AsyncTask<String, Void, String> {
-	
-	String ptz_Point;
-	Context app_context;
-	
+
+	private String ptz_Point;
+	private Context app_context;
+
 	public BGGoToPTZPoint(String ptzPoint, Context context) {
 		this.app_context = context;
 		this.ptz_Point = ptzPoint;
 	}
-	
+
 	@Override
 	protected String doInBackground(String... params) {
 		String result;
-		
+
 		SharedPreferences sharedPrefs = ((FragmentActivity) app_context).getSharedPreferences(app_context.getPackageName() + "_preferences", 0);
-		
-        WifiManager wm = (WifiManager) app_context.getSystemService(Context.WIFI_SERVICE);
+
+		boolean doHttps = sharedPrefs.getBoolean("prefCamHTTPS", false);
+		WifiManager wm = (WifiManager) app_context.getSystemService(Context.WIFI_SERVICE);
 		String mac = wm.getConnectionInfo().getMacAddress();
 		mac = mac.replace(":", "");
 		mac = mac + mac.substring(mac.length() - 4, mac.length());
-		
+
 		String pass = sharedPrefs.getString("prefPassword", "NULL");
 		pass = pass.replaceFirst("encENC", "");
-		
-        try {
+
+		try {
 			pass = SimpleCrypto.decrypt(mac, pass);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		String userPass = "usr=" + sharedPrefs.getString("prefUsername", "NULL") + "&pwd=" + pass;
 		String camURL = sharedPrefs.getString("prefCamURL", "NULL");
 		String camCGI = ((FragmentActivity) app_context).getResources().getString(R.string.camCGI);
-		
+
 		String urlString = camURL + camCGI + "?cmd=ptzGotoPresetPoint&name=" + ptz_Point + "&" +userPass;
-		
-		NetworkUtils net = new NetworkUtils(urlString);
-		
+
+		NetworkUtils net = new NetworkUtils(urlString, doHttps);
+
 		Document doc = net.getXMLDocument();
-		
+
 		if (doc == null) {
 			result = "fail";
 			return result;
 		}
-		
+
 		doc.getDocumentElement().normalize();
-		
+
 		NodeList nList = doc.getElementsByTagName("result");
-		
+
 		Node n = nList.item(0);
-		
+
 		Element e = (Element) n;
-		
+
 		if (e.getTextContent().equals("0")) {
 			result = "success";
 		} else {
@@ -72,9 +73,9 @@ public class BGGoToPTZPoint extends AsyncTask<String, Void, String> {
 			toast.show();
 			result = "fail";
 		}
-		
+
 		return result;
-	}      
+	}
 
 	@Override
 	protected void onPostExecute(String result) {
@@ -90,5 +91,5 @@ public class BGGoToPTZPoint extends AsyncTask<String, Void, String> {
 			toast.show();
 		}
 
-  	}
+	}
 }

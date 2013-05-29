@@ -60,7 +60,10 @@ public class BGSnapshot extends AsyncTask<String, Void, String> {
 		String result = "";
 		String urlString = cam_URL + cam_CGI + "?cmd=snapPicture2&" + user_Pass;
 		
-		NetworkUtils net = new NetworkUtils(urlString);
+		SharedPreferences prefs = app_context.getSharedPreferences(app_context.getPackageName() + "_preferences", 0);
+		boolean doHttps = prefs.getBoolean("prefCamHTTPS", false);
+		
+		NetworkUtils net = new NetworkUtils(urlString, doHttps);
 		
 		snapshot = net.getBitmap();
 		
@@ -72,7 +75,6 @@ public class BGSnapshot extends AsyncTask<String, Void, String> {
 	
 		return result;
 	}
-	
 	
 	private String saveSnapshot() {
 		String result = "fail";
