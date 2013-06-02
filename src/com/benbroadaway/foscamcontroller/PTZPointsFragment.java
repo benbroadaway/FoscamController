@@ -1,5 +1,6 @@
 package com.benbroadaway.foscamcontroller;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +12,9 @@ import android.widget.RadioGroup;
 
 public class PTZPointsFragment extends Fragment {
 	private static final String PTZ_PREFS = "PTZPreferences";
-	private FoscamController mainActivity;
+	private Context mainActivity;
 	private String[] ptzPoints;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -22,37 +24,11 @@ public class PTZPointsFragment extends Fragment {
 				.inflate(R.layout.fragment_ptz_points,
 						container, false);
 
-		//String[] ptzPoints = res.getStringArray(R.array.ptz_points_array);
-		mainActivity = (FoscamController) rootView.getContext();		
-
-		ptzPoints = mainActivity.ptzPoints;
-
-		if (ptzPoints == null) {
-			SharedPreferences settings = mainActivity.getSharedPreferences(PTZ_PREFS, 0);
-			String str = settings.getString("ptzPoints", "");
-
-			if (!str.equals("")) {
-				ptzPoints = str.split(";");
-				mainActivity.ptzPoints = ptzPoints;
-			} else {
-				return rootView;
-			}
-		} else {
-			StringBuilder str = new StringBuilder();
-
-			for (int i=0; i<ptzPoints.length; i++) {
-				if (i!=0 && i!=ptzPoints.length) 
-					str.append(";");
-
-				str.append(ptzPoints[i]);
-			}
-
-			SharedPreferences settings = mainActivity.getSharedPreferences(PTZ_PREFS, 0);
-			SharedPreferences.Editor editor = settings.edit();
-			editor.putString("ptzPoints", str.toString());
-
-			editor.commit();
-		}
+		mainActivity = rootView.getContext(); 
+		
+		SharedPreferences prefs = mainActivity.getSharedPreferences(mainActivity.getPackageName() + "_preferences", 0);
+		
+		ptzPoints = prefs.getString("ptzPoints", "").split(";");
 
 		RadioGroup rg = (RadioGroup) rootView.findViewById(R.id.ptzGroup);
 
@@ -108,6 +84,4 @@ public class PTZPointsFragment extends Fragment {
 			ptzPoints = str.split(";");
 		}
 	}
-
-
 }

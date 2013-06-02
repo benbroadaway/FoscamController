@@ -19,7 +19,6 @@ ActionBar.TabListener {
 	private static final int RESULT_SETTINGS = 1;
 
 	public String ptzPoint;
-	public  String[] ptzPoints;
 
 	public static final  String cam_URL = "https://broadaway.isa-geek.net:55443";
 	public static final  String cam_CGI = "/cgi-bin/CGIProxy.fcgi";

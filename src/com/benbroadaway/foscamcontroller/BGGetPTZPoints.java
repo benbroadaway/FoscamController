@@ -16,14 +16,13 @@ import android.widget.Toast;
 public class BGGetPTZPoints extends AsyncTask<String, Void, String> {
 	Context app_context;
 	private String cam_URL, cam_CGI, user_Pass;
-	private String PTZ_PREFS;
+	//private String PTZ_PREFS;
 
 	public BGGetPTZPoints(Context context) {
 		this.app_context = context;
 		this.cam_CGI = ((FragmentActivity) app_context).getResources().getString(R.string.camCGI);
-		this.PTZ_PREFS = ((FoscamController) context).getResources().getString(R.string.ptz_prefs);
-
-		SharedPreferences sharedPrefs = ((FoscamController) app_context).getSharedPreferences(app_context.getPackageName() + "_preferences", 0);
+		
+		SharedPreferences sharedPrefs = app_context.getSharedPreferences(app_context.getPackageName() + "_preferences", 0);
 
 		WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		String mac = wm.getConnectionInfo().getMacAddress();
@@ -118,8 +117,8 @@ public class BGGetPTZPoints extends AsyncTask<String, Void, String> {
 
 		ptzPoints = results.split(";");
 
-		SharedPreferences settings = ((FoscamController) app_context).getSharedPreferences(PTZ_PREFS, 0);
-		SharedPreferences.Editor editor = settings.edit();
+		SharedPreferences sharedPrefs = app_context.getSharedPreferences(app_context.getPackageName() + "_preferences", 0);
+		SharedPreferences.Editor editor = sharedPrefs.edit();
 		editor.putString("ptzPoints", results);
 
 		editor.commit();
