@@ -6,13 +6,14 @@
 	<string name="title_PTZ_Points">PTZ Points</string>
 	<string name="title_Motion_Detection">Motion Detection</string>
 	<string name="title_Snapshot">Snapshot</string>
+	<string name="title_Live_Move">Live Move</string>
 	<string name="btn_PtzSubmit">Submit</string>
-	<string name="btn_Go">Go</string>
 	<string name="btn_Refresh">Refresh</string>
 	<string name="switch_MotionDetection">Enable motion detection</string>
 	<string name="hdr_Available_PTZ_Points">Available PTZ Points</string>
 	<string name="hdr_Motion_Detection">Enable/Disable</string>
 	<string name="imgDesc_Snapshot">cam snapshot</string>
+	<string name="imgDesc_LiveMoveView">live move view</string>
 	<string name="camCGI">/cgi-bin/CGIProxy.fcgi</string>
 	<string name="ptz_prefs">PTZPreferences</string>
 	

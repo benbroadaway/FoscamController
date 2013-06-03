@@ -15,21 +15,18 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 public class BGSnapshot extends AsyncTask<String, Void, String> {
 	
 	String cam_URL, cam_CGI, user_Pass;
-	private View view;
 	private Context app_context;
 	private Bitmap snapshot;
 	private boolean saveToGallery;
 	
-	public BGSnapshot(View view) {
+	public BGSnapshot(Context context) {
 
-		this.view = view;
-		this.app_context = view.getContext();
+		this.app_context = context;
 		
 		SharedPreferences sharedPrefs = app_context.getSharedPreferences(app_context.getPackageName() + "_preferences", 0);
 		
@@ -100,7 +97,7 @@ public class BGSnapshot extends AsyncTask<String, Void, String> {
 		if (result.equals("success") && Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
 			
 			try {
-				ImageView imgSnapshot = (ImageView) view.findViewById(R.id.imgSnapshot);
+				ImageView imgSnapshot = (ImageView) ((FragmentActivity) app_context).findViewById(R.id.imgSnapshot);
 				imgSnapshot.setImageBitmap(snapshot);
 
 				if (saveToGallery) {

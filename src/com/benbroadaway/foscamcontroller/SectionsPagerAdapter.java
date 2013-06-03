@@ -31,6 +31,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 		case 2:
 			f = new SnapshotFragment();
 			break;
+		case 3:
+			f = new LiveMoveFragment();
 		}
 		
 		return f;
@@ -39,7 +41,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public int getCount() {
 		// Show 3 total pages.
-		return 3;
+		return 4;
 	}
 
 	@Override
@@ -47,11 +49,13 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 		Locale l = Locale.getDefault();
 		switch (position) {
 		case 0:
-			return ((FragmentActivity)context).getResources().getString(R.string.title_PTZ_Points).toUpperCase(l);
+			return ((FragmentActivity) context).getResources().getString(R.string.title_PTZ_Points).toUpperCase(l);
 		case 1:
-			return ((FragmentActivity)context).getResources().getString(R.string.title_Motion_Detection).toUpperCase(l);
+			return ((FragmentActivity) context).getResources().getString(R.string.title_Motion_Detection).toUpperCase(l);
 		case 2:
-			return ((FragmentActivity)context).getResources().getString(R.string.title_Snapshot).toUpperCase(l);
+			return ((FragmentActivity) context).getResources().getString(R.string.title_Snapshot).toUpperCase(l);
+		case 3:
+			return ((FragmentActivity) context).getResources().getString(R.string.title_Live_Move).toUpperCase(l);
 		}
 		return null;
 	}

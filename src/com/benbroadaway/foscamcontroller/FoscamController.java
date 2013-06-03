@@ -163,8 +163,28 @@ ActionBar.TabListener {
 		}
 	}	
 
-	public void takeSnapshot (View view) {
-		BGSnapshot snapper = new BGSnapshot(view);
+	public void takeSnapshot(View view) {
+		BGSnapshot snapper = new BGSnapshot(this);
 		snapper.execute();
+	}
+	
+	public void moveUp(View view) {
+		BGMovePTZ mover = new BGMovePTZ(this, BGMovePTZ.PTZDirection.UP);
+		mover.execute();
+	}
+	
+	public void moveDown(View view) {
+		BGMovePTZ mover = new BGMovePTZ(this, BGMovePTZ.PTZDirection.DOWN);
+		mover.execute();
+	}
+	
+	public void moveLeft(View view) {
+		BGMovePTZ mover = new BGMovePTZ(this, BGMovePTZ.PTZDirection.LEFT);
+		mover.execute();
+	}
+	
+	public void moveRight(View view) {
+		BGMovePTZ mover = new BGMovePTZ(this, BGMovePTZ.PTZDirection.RIGHT);
+		mover.execute();
 	}
 }
